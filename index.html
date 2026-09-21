@@ -1,34 +1,62 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Mozart y tú</title>
 
     <style>
         body {
-            background-color: black;
-            color: white;
+            margin: 0;
+            padding: 30px 15px;
+            background-color: #000;
+            color: #fff;
             font-family: Arial, sans-serif;
             text-align: center;
-            padding: 30px 15px;
+        }
+
+        .container {
+            max-width: 500px;
+            margin: auto;
         }
 
         h1 {
             font-size: 28px;
-            margin-bottom: 40px;
+            margin-bottom: 25px;
         }
 
-        .audio-container {
-            max-width: 500px;
-            margin: 0 auto 30px;
+        .languages {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
         }
 
-        h2 {
-            font-size: 20px;
-            font-weight: normal;
-            margin-bottom: 12px;
+        .language-button {
+            background-color: #fff;
+            color: #000;
+            border: none;
+            border-radius: 8px;
+            padding: 9px 12px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        .language-button.active {
+            background-color: #888;
+            color: #fff;
+        }
+
+        .audio-block {
+            margin-bottom: 30px;
+        }
+
+        .audio-title {
+            font-size: 19px;
+            font-weight: bold;
+            margin-bottom: 10px;
         }
 
         audio {
@@ -39,42 +67,135 @@
 
 <body>
 
-    <h1>🎵 MOZART Y TÚ 🎵</h1>
+<div class="container">
 
-    <div class="audio-container">
-        <h2>🎹 ¿Qué instrumento está sonando?</h2>
+    <h1 id="main-title">🎵 MOZART Y TÚ 🎵</h1>
+
+    <div class="languages">
+        <button class="language-button active" onclick="changeLanguage('es', this)">🇪🇸 Español</button>
+        <button class="language-button" onclick="changeLanguage('it', this)">🇮🇹 Italiano</button>
+        <button class="language-button" onclick="changeLanguage('ca', this)">🏴 Català</button>
+        <button class="language-button" onclick="changeLanguage('fr', this)">🇫🇷 Français</button>
+    </div>
+
+    <div class="audio-block">
+        <div class="audio-title" id="title1">¿Qué instrumento está sonando?</div>
         <audio controls>
             <source src="piano.mp3" type="audio/mpeg">
         </audio>
     </div>
 
-    <div class="audio-container">
-        <h2>🎵 ¡A ritmo de Mozart!</h2>
+    <div class="audio-block">
+        <div class="audio-title" id="title2">¡A ritmo de Mozart!</div>
         <audio controls>
             <source src="marcha.mp3" type="audio/mpeg">
         </audio>
     </div>
 
-    <div class="audio-container">
-        <h2>🐦 ¡Papa-dúo!</h2>
+    <div class="audio-block">
+        <div class="audio-title" id="title3">¡Papa-dúo!</div>
         <audio controls>
             <source src="duo.mp3" type="audio/mpeg">
         </audio>
     </div>
 
-    <div class="audio-container">
-        <h2>🌙 ¡La Reina de la Noche canta!</h2>
+    <div class="audio-block">
+        <div class="audio-title" id="title4">¡La Reina de la Noche canta!</div>
         <audio controls>
             <source src="aria.mp3" type="audio/mpeg">
         </audio>
     </div>
 
-    <div class="audio-container">
-        <h2>🌳 ¡De excursión con el pajarero!</h2>
+    <div class="audio-block">
+        <div class="audio-title" id="title5">¡De excursión con el pajarero!</div>
         <audio controls>
             <source src="papageno.mp3" type="audio/mpeg">
         </audio>
     </div>
+
+</div>
+
+
+<script>
+
+    const translations = {
+
+        es: {
+            mainTitle: "🎵 MOZART Y TÚ 🎵",
+            titles: [
+                "¿Qué instrumento está sonando?",
+                "¡A ritmo de Mozart!",
+                "¡Papa-dúo!",
+                "¡La Reina de la Noche canta!",
+                "¡De excursión con el pajarero!"
+            ]
+        },
+
+        it: {
+            mainTitle: "🎵 MOZART E TU 🎵",
+            titles: [
+                "Quale strumento sta suonando?",
+                "A ritmo di Mozart!",
+                "PAPA-DUETTO!",
+                "La Regina della Notte canta!",
+                "In gita con l’uccellatore!"
+            ]
+        },
+
+        ca: {
+            mainTitle: "🎵 MOZART I TU 🎵",
+            titles: [
+                "Quin instrument està sonant?",
+                "A ritme de Mozart!",
+                "PAPA-DUET!",
+                "La Reina de la Nit canta!",
+                "D’excursió amb l’ocellaire!"
+            ]
+        },
+
+        fr: {
+            mainTitle: "🎵 MOZART ET TOI 🎵",
+            titles: [
+                "Quel instrument est-ce qu’on entend ?",
+                "Au rythme de Mozart !",
+                "PAPA-DUO !",
+                "La Reine de la Nuit chante !",
+                "En excursion avec l’oiseleur !"
+            ]
+        }
+
+    };
+
+
+    function changeLanguage(language, button) {
+
+        document.getElementById("main-title").textContent =
+            translations[language].mainTitle;
+
+        document.getElementById("title1").textContent =
+            translations[language].titles[0];
+
+        document.getElementById("title2").textContent =
+            translations[language].titles[1];
+
+        document.getElementById("title3").textContent =
+            translations[language].titles[2];
+
+        document.getElementById("title4").textContent =
+            translations[language].titles[3];
+
+        document.getElementById("title5").textContent =
+            translations[language].titles[4];
+
+
+        document.querySelectorAll(".language-button").forEach(function(btn) {
+            btn.classList.remove("active");
+        });
+
+        button.classList.add("active");
+    }
+
+</script>
 
 </body>
 </html>
